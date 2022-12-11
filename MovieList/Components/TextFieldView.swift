@@ -11,7 +11,7 @@ struct TextFieldView: View {
     @Binding var text: String
     var title: String
     var placeholder: String?
-    
+    var keyboardType = UIKeyboardType.default
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
@@ -22,6 +22,7 @@ struct TextFieldView: View {
                       text: $text)
             .textFieldStyle(.roundedBorder)
             .font(.title3)
+            .keyboardType(keyboardType)
             
         }
     }

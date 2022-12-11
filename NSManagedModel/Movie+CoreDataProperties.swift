@@ -16,12 +16,12 @@ extension Movie {
         return NSFetchRequest<Movie>(entityName: "Movie")
     }
 
-    @NSManaged public var posterPath: String?
-    @NSManaged public var overview: String?
-    @NSManaged public var releaseDate: Date?
-    @NSManaged public var title: String?
+    @NSManaged public var posterPath: String
+    @NSManaged public var overview: String
+    @NSManaged public var releaseDate: Date
+    @NSManaged public var title: String
     @NSManaged public var voteAverage: Double
-    @NSManaged public var voteCount: Int64
+    @NSManaged public var voteCount: Int
     @NSManaged public var actors: NSSet?
     @NSManaged public var genres: NSSet?
     @NSManaged public var comments: NSSet?

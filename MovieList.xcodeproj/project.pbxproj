@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A1F05DE2946424800E3B37F /* CreateMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F05DD2946424800E3B37F /* CreateMovieView.swift */; };
+		7A1F05E12946426C00E3B37F /* CreateMoviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F05E02946426C00E3B37F /* CreateMoviewViewModel.swift */; };
+		7A1F05E42946595000E3B37F /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F05E32946595000E3B37F /* MovieListView.swift */; };
+		7A1F05E62946596D00E3B37F /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F05E52946596D00E3B37F /* MovieListViewModel.swift */; };
 		7AAC4C2E2940C88F00545C38 /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAC4C2D2940C88F00545C38 /* CreateUserView.swift */; };
 		7AAC4C302940C89F00545C38 /* CreateUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAC4C2F2940C89F00545C38 /* CreateUserViewModel.swift */; };
 		7AAC4C332940C95E00545C38 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAC4C322940C95E00545C38 /* TextFieldView.swift */; };
@@ -33,6 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A1F05DD2946424800E3B37F /* CreateMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMovieView.swift; sourceTree = "<group>"; };
+		7A1F05E02946426C00E3B37F /* CreateMoviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMoviewViewModel.swift; sourceTree = "<group>"; };
+		7A1F05E32946595000E3B37F /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
+		7A1F05E52946596D00E3B37F /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		7AAC4C2D2940C88F00545C38 /* CreateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
 		7AAC4C2F2940C89F00545C38 /* CreateUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewModel.swift; sourceTree = "<group>"; };
 		7AAC4C322940C95E00545C38 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
@@ -70,6 +78,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A1F05DF2946424F00E3B37F /* CreateMovieView */ = {
+			isa = PBXGroup;
+			children = (
+				7A1F05DD2946424800E3B37F /* CreateMovieView.swift */,
+				7A1F05E02946426C00E3B37F /* CreateMoviewViewModel.swift */,
+			);
+			path = CreateMovieView;
+			sourceTree = "<group>";
+		};
+		7A1F05E22946593A00E3B37F /* MovieListView */ = {
+			isa = PBXGroup;
+			children = (
+				7A1F05E32946595000E3B37F /* MovieListView.swift */,
+				7A1F05E52946596D00E3B37F /* MovieListViewModel.swift */,
+			);
+			path = MovieListView;
+			sourceTree = "<group>";
+		};
 		7AAC4C2C2940C87000545C38 /* CreateUserView */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,7 +133,9 @@
 		7AC39053293F6F6E00B10E85 /* MovieList */ = {
 			isa = PBXGroup;
 			children = (
+				7A1F05E22946593A00E3B37F /* MovieListView */,
 				7AAC4C312940C93A00545C38 /* Components */,
+				7A1F05DF2946424F00E3B37F /* CreateMovieView */,
 				7AAC4C2C2940C87000545C38 /* CreateUserView */,
 				7AC39054293F6F6E00B10E85 /* MovieListApp.swift */,
 				7AC39056293F6F6E00B10E85 /* ContentView.swift */,
@@ -223,8 +251,10 @@
 				7AC3907F293F80D000B10E85 /* UserMovie+CoreDataClass.swift in Sources */,
 				7AC39080293F80D000B10E85 /* UserMovie+CoreDataProperties.swift in Sources */,
 				7AC39061293F6F7000B10E85 /* MovieList.xcdatamodeld in Sources */,
+				7A1F05E42946595000E3B37F /* MovieListView.swift in Sources */,
 				7AC39077293F80D000B10E85 /* Actor+CoreDataClass.swift in Sources */,
 				7AC3907C293F80D000B10E85 /* MovieList+CoreDataProperties.swift in Sources */,
+				7A1F05DE2946424800E3B37F /* CreateMovieView.swift in Sources */,
 				7AAC4C302940C89F00545C38 /* CreateUserViewModel.swift in Sources */,
 				7AAC4C332940C95E00545C38 /* TextFieldView.swift in Sources */,
 				7AC39082293F80D000B10E85 /* User+CoreDataProperties.swift in Sources */,
@@ -236,9 +266,11 @@
 				7AC39087293F814F00B10E85 /* Comment+CoreDataProperties.swift in Sources */,
 				7AC39076293F80D000B10E85 /* Movie+CoreDataProperties.swift in Sources */,
 				7AC39086293F814F00B10E85 /* Comment+CoreDataClass.swift in Sources */,
+				7A1F05E12946426C00E3B37F /* CreateMoviewViewModel.swift in Sources */,
 				7AC39055293F6F6E00B10E85 /* MovieListApp.swift in Sources */,
 				7AC3907B293F80D000B10E85 /* MovieList+CoreDataClass.swift in Sources */,
 				7AC39079293F80D000B10E85 /* Genre+CoreDataClass.swift in Sources */,
+				7A1F05E62946596D00E3B37F /* MovieListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
