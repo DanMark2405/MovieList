@@ -42,6 +42,11 @@ class PersistenceController {
     }
     
     
+    func fetchMovies() -> [Movie] {
+        let request = Movie.fetchRequest()
+        return (try? viewContext.fetch(request)) ?? []
+    }
+    
      func saveContext () {
           if viewContext.hasChanges {
               do {

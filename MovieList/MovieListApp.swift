@@ -13,7 +13,7 @@ struct MovieListApp: App {
 
     var body: some Scene {
         WindowGroup {
-         CreateMovieView()
+         AddActorView()
         }
     }
 }

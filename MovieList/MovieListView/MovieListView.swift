@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct MovieListView: View {
+    @ObservedObject var viewModel = MovieListViewModel()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                Text("Movies")
+                    .font(.title.bold())
+                    .foregroundColor(.purple)
+                
+                List(viewModel.movies) { movie in
+                    NavigationLink(destination: MovieDetailView(movie: movie)) {
+                        MovieCell(movie: movie)
+                    }.listRowSeparator(.hidden)
+                }
+                .listStyle(.inset)
+            }
+            .onAppear {
+                viewModel.fetchMovies()
+            }
+        }.navigationTitle("Movies")
     }
 }
 

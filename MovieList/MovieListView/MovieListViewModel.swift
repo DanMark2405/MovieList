@@ -8,5 +8,16 @@
 import Foundation
 
 class MovieListViewModel: ObservableObject {
+    @Published var movies = [Movie]()
+    
+    var persistance = PersistenceController.shared
+    init() {
+//        movies = [exMovie, exMovie, exMovie, exMovie, exMovie, exMovie]
+//        persistance.saveContext()
+    }
+    
+    func fetchMovies() {
+        movies.append(contentsOf: persistance.fetchMovies())
+    }
     
 }

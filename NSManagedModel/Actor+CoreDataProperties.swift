@@ -16,9 +16,9 @@ extension Actor {
         return NSFetchRequest<Actor>(entityName: "Actor")
     }
 
-    @NSManaged public var firstName: String?
-    @NSManaged public var imagePath: String?
-    @NSManaged public var lastName: String?
+    @NSManaged public var firstName: String
+    @NSManaged public var imagePath: String
+    @NSManaged public var lastName: String
     @NSManaged public var movies: Movie?
 
 }
