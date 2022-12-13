@@ -2,7 +2,7 @@
 //  Comment+CoreDataProperties.swift
 //  MovieList
 //
-//  Created by Daniil Markish on 6.12.22.
+//  Created by Daniil Markish on 13.12.22.
 //
 //
 
@@ -16,8 +16,8 @@ extension Comment {
         return NSFetchRequest<Comment>(entityName: "Comment")
     }
 
-    @NSManaged public var text: String?
-    @NSManaged public var rate: Double
+    @NSManaged public var rate: Int
+    @NSManaged public var text: String
     @NSManaged public var movie: Movie?
     @NSManaged public var user: User?
 

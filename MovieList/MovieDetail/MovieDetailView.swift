@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MovieDetailView: View {
-    var viewModel: MovieDetailViewModel
-    
+    @ObservedObject var viewModel: MovieDetailViewModel
+    @State var isShow = false
     init(movie: Movie) {
         let movie = exMovie
         self.viewModel = MovieDetailViewModel(movie: movie)
@@ -27,7 +27,7 @@ struct MovieDetailView: View {
                         .background(Color.purple)
                 })
                 .frame(maxHeight: 400)
-
+                
                 Text(viewModel.movie.title)
                     .font(.title.bold())
                     .foregroundColor(.purple)
@@ -51,31 +51,79 @@ struct MovieDetailView: View {
                     .background(RoundedRectangle(cornerRadius: 5).fill(Color.purple.opacity(0.5)))
                     .padding(.leading)
                 Text(viewModel.movie.overview)
-                    .padding([.leading, .trailing])
+                    .padding(.horizontal)
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                HStack {
-                    Spacer()
-                }
-                Spacer()
-            }
-        }.ignoresSafeArea()
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {}) {
-                        ZStack {
-                            Circle()
-                                .frame(width: 60)
-                                .foregroundColor(.pink.opacity(0.5))
-                            Image(systemName: "plus")
-                                .font(.title.bold())
+                ScrollView(.horizontal) {
+                    ForEach(viewModel.movie.actors.array()) { item in
+                        ActorCell(actor: item)
+                    }
+                }.frame(height: 250)
+                    .padding(.horizontal)
+                
+                VStack {
+                    Button("Add comment + ") {
+                        isShow.toggle()
+                    }
+                    .foregroundColor(.purple)
+                    if isShow {
+                        VStack {
+                            HStack {
+                                Stepper(value: $viewModel.rate, in: 1...10) {
+                                    HStack {
+                                        Image(systemName: "star.fill")
+                                            .font(.title.bold())
+                                            .foregroundColor(.yellow)
+                                            .padding(.trailing)
+                                        Text("\(viewModel.rate)")
+                                            .font(.title.bold())
+                                            .foregroundColor(.purple)
+                                    }
+                                }.frame(width: 200)
+                                Button("Save") {
+                                    viewModel.addComment()
+                                }
+                                .disabled(viewModel.isDisabled)
                                 .foregroundColor(.white)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 10)
+                                .background(Color.purple)
+                                .cornerRadius(10)
+                            }
+                           
+                            TextEditor(text: $viewModel.commentText)
+                                .frame(minHeight: 200)
+                                .padding(5)
+                                .background(RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.gray.opacity(0.5), lineWidth: 1))
+                        }.padding(.horizontal)
+                    }
+                    LazyVStack {
+                        ForEach(viewModel.movie.comments.array()) {comment in
+                            CommentCell(comment: comment)
+                            
+                        }
+                    }
+        
+                }
+            }.ignoresSafeArea()
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {}) {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 60)
+                                    .foregroundColor(.pink.opacity(0.5))
+                                Image(systemName: "plus")
+                                    .font(.title.bold())
+                                    .foregroundColor(.white)
+                            }
                         }
                     }
                 }
-            }
+        }
+        
     }
-    
     
 }
 

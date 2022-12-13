@@ -16,9 +16,9 @@ extension MovieList {
         return NSFetchRequest<MovieList>(entityName: "MovieList")
     }
 
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var imagePath: String?
-    @NSManaged public var userMovies: NSSet?
+    @NSManaged public var userMovies: Set<Note>
     @NSManaged public var user: User?
 
 }
@@ -27,10 +27,10 @@ extension MovieList {
 extension MovieList {
 
     @objc(addUserMoviesObject:)
-    @NSManaged public func addToUserMovies(_ value: UserMovie)
+    @NSManaged public func addToUserMovies(_ value: Note)
 
     @objc(removeUserMoviesObject:)
-    @NSManaged public func removeFromUserMovies(_ value: UserMovie)
+    @NSManaged public func removeFromUserMovies(_ value: Note)
 
     @objc(addUserMovies:)
     @NSManaged public func addToUserMovies(_ values: NSSet)

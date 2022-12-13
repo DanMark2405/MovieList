@@ -9,6 +9,9 @@ import SwiftUI
 
 struct MovieCell: View {
     var movie: Movie
+    var date: String {
+        return movie.releaseDate.year()
+    }
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: movie.posterPath), content: { image in
@@ -35,7 +38,7 @@ struct MovieCell: View {
                         .font(.title3)
                         .foregroundColor(.yellow)
                         .padding(.trailing)
-                    Text(movie.releaseDate.year())
+                    Text(date)
                         .font(.title3)
                         .padding(3)
                         .background(RoundedRectangle(cornerRadius: 5).fill(Color.purple.opacity(0.5)))
@@ -65,5 +68,7 @@ var exMovie: Movie {
     movie.overview = "https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/fb91b40c-1158-4853-84c5-d587c53a9705/1920x"
     movie.releaseDate = Date()
     movie.voteAverage = 9
+   // movie.actors.insert(exActor)
+    movie.comments.insert(exComment)
     return movie
 }

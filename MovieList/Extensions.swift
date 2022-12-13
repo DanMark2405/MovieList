@@ -14,5 +14,13 @@ extension Date {
         dateFormatter.dateFormat = "yyyy"
         let yearString = dateFormatter.string(from: date)
         return yearString
+        
     }
 }
+
+extension Set {
+    func array() -> [Element] {
+        return Array(self)
+    }
+}
+

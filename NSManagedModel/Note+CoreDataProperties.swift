@@ -1,8 +1,8 @@
 //
-//  UserMovie+CoreDataProperties.swift
+//  Note+CoreDataProperties.swift
 //  MovieList
 //
-//  Created by Daniil Markish on 6.12.22.
+//  Created by Daniil Markish on 13.12.22.
 //
 //
 
@@ -10,21 +10,21 @@ import Foundation
 import CoreData
 
 
-extension UserMovie {
+extension Note {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<UserMovie> {
-        return NSFetchRequest<UserMovie>(entityName: "UserMovie")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Note> {
+        return NSFetchRequest<Note>(entityName: "Note")
     }
 
-    @NSManaged public var note: String?
-    @NSManaged public var rate: Double
-    @NSManaged public var movie: Movie?
+    @NSManaged public var text: String
+    @NSManaged public var rate: Int
+    @NSManaged public var movie: Movie
     @NSManaged public var movieLists: NSSet?
 
 }
 
 // MARK: Generated accessors for movieLists
-extension UserMovie {
+extension Note {
 
     @objc(addMovieListsObject:)
     @NSManaged public func addToMovieLists(_ value: MovieList)
@@ -40,6 +40,6 @@ extension UserMovie {
 
 }
 
-extension UserMovie : Identifiable {
+extension Note : Identifiable {
 
 }

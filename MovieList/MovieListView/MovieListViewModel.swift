@@ -12,12 +12,12 @@ class MovieListViewModel: ObservableObject {
     
     var persistance = PersistenceController.shared
     init() {
-//        movies = [exMovie, exMovie, exMovie, exMovie, exMovie, exMovie]
-//        persistance.saveContext()
+        movies = [exMovie, exMovie, exMovie, exMovie, exMovie, exMovie]
+        
     }
     
     func fetchMovies() {
-        movies.append(contentsOf: persistance.fetchMovies())
+        //movies.append(contentsOf: persistance.fetchMovies())
     }
     
 }

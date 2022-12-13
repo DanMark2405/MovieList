@@ -7,7 +7,7 @@
         <relationship name="movies" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="actors" inverseEntity="Movie"/>
     </entity>
     <entity name="Comment" representedClassName="Comment" syncable="YES">
-        <attribute name="rate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="rate" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="text" attributeType="String"/>
         <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="comments" inverseEntity="Movie"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="comments" inverseEntity="User"/>
@@ -31,7 +31,13 @@
         <attribute name="imagePath" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="movieLists" inverseEntity="User"/>
-        <relationship name="userMovies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserMovie" inverseName="movieLists" inverseEntity="UserMovie"/>
+        <relationship name="userNotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="movieLists" inverseEntity="Note"/>
+    </entity>
+    <entity name="Note" representedClassName="Note" syncable="YES">
+        <attribute name="rate" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie"/>
+        <relationship name="movieLists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovieList" inverseName="userNotes" inverseEntity="MovieList"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" attributeType="String"/>
@@ -39,11 +45,5 @@
         <attribute name="lastName" attributeType="String"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="user" inverseEntity="Comment"/>
         <relationship name="movieLists" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MovieList" inverseName="user" inverseEntity="MovieList"/>
-    </entity>
-    <entity name="UserMovie" representedClassName="UserMovie" syncable="YES">
-        <attribute name="note" optional="YES" attributeType="String"/>
-        <attribute name="rate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie"/>
-        <relationship name="movieLists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovieList" inverseName="userMovies" inverseEntity="MovieList"/>
     </entity>
 </model>

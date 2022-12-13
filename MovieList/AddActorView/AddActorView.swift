@@ -14,11 +14,19 @@ struct AddActorView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            Text("Add Actor")
+                .font(.title.bold())
+                .foregroundColor(.purple)
+                .padding(.horizontal)
             
+            SearchView(text: $viewModel.searchText) {
+                viewModel.search()
+            }
             Button("Add new actor +") {
                 isShow.toggle()
             }
             .foregroundColor(.gray)
+            .padding(.horizontal)
             
             if isShow {
                 VStack {
@@ -27,24 +35,27 @@ struct AddActorView: View {
                         TextFieldView(text: $viewModel.lastName, title: "Last name")
                     }
                     TextFieldView(text: $viewModel.imagePath, title: "Image path", keyboardType: .URL)
+                    Button("Create") {
+                        viewModel.addActor()
+                    }
+                    .disabled(viewModel.isDisabled)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(Color.purple)
+                    .cornerRadius(10)
                 }.padding(8)
-                Button("Create") {
-                    viewModel.addActor()
-                }
-                .disabled(viewModel.isDisabled)
-                .foregroundColor(.white)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(Color.purple)
-                .cornerRadius(10)
+              
                 
             }
             
-            LazyVGrid(columns: gridItems.filter($0.lastName.hasPrefix(viewModel.searchText))) {
+            LazyVGrid(columns: gridItems) {
                 ForEach(viewModel.actors) { item in
                     ActorCell(actor: item)
                 }
             }
+           
+
         }
     }
 }
@@ -54,3 +65,9 @@ struct AddActorView_Previews: PreviewProvider {
         AddActorView()
     }
 }
+
+
+
+
+
+

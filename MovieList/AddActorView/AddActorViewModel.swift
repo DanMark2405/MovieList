@@ -30,4 +30,8 @@ class AddActorViewModel: ObservableObject {
         
     }
     
+    func search() {
+        
+    }
+    
 }

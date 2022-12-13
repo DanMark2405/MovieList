@@ -22,9 +22,9 @@ extension Movie {
     @NSManaged public var title: String
     @NSManaged public var voteAverage: Double
     @NSManaged public var voteCount: Int
-    @NSManaged public var actors: NSSet?
+    @NSManaged public var actors: Set<Actor>
     @NSManaged public var genres: NSSet?
-    @NSManaged public var comments: NSSet?
+    @NSManaged public var comments: Set<Comment>
 
 }
 

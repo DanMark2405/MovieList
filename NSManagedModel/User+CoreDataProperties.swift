@@ -16,11 +16,11 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
-    @NSManaged public var firstName: String?
-    @NSManaged public var lastName: String?
-    @NSManaged public var email: String?
+    @NSManaged public var firstName: String
+    @NSManaged public var lastName: String
+    @NSManaged public var email: String
     @NSManaged public var comments: Set<Comment>
-    @NSManaged public var movieLists: NSSet?
+    @NSManaged public var movieLists: Set<MovieList>
 
 }
 
