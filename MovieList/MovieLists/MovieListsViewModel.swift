@@ -15,7 +15,8 @@ class MovieListsViewModel: ObservableObject {
     var user: User
     
     init() {
-        user = exUser
+        user = PersistenceController.shared.getUsers().first ?? User(context: PersistenceController.shared.viewContext)
+        
         $name
             .map {$0.isEmpty}
             .assign(to: &$isDisabled)

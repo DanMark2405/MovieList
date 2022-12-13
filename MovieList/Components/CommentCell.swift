@@ -42,21 +42,4 @@ struct CommentCell_Previews: PreviewProvider {
     }
 }
 
-var exComment: Comment {
-    let comment = Comment(context: PersistenceController.shared.viewContext)
-    comment.rate = 9
-    comment.text = "comment asdas asd asds saf sf sd f sd f ds f  sd f  s f sd fsd f sdf    rafdfasfd adf asdf asdf"
-    comment.user = exUser
-    return comment
-}
-var exUser: User {
-    let user = User(context: PersistenceController.shared.viewContext)
-    user.lastName = "Daniil"
-    user.firstName = "Markish"
-    user.email = "emadsad@asdasd.com"
-    user.movieLists.insert(exMovieList)
-    user.movieLists.insert(exMovieList)
-    user.movieLists.insert(exMovieList)
-    user.movieLists.insert(exMovieList)
-    return user
-}
+

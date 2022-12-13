@@ -13,8 +13,7 @@ class CreateUserViewModel: ObservableObject {
     @Published var lastName = ""
     @Published var email = ""
     @Published var isDisabled = true
-    @Published var text = ""
-    
+    var completion: ((Bool) -> Void)?
     
     init() {
         Publishers.CombineLatest3($firstName, $lastName, $email)
@@ -27,13 +26,8 @@ class CreateUserViewModel: ObservableObject {
     
     func createUser() {
         PersistenceController.shared.saveUser(name: firstName, surname: lastName, email: email)
+        completion?(true)
     }
     
-    func getUsers() {
-        let array = PersistenceController.shared.getUsers()
-        array.forEach { user in
-            text += "\n \(user.firstName) \(user.lastName) \(user.email)"
-        }
-    }
     
 }

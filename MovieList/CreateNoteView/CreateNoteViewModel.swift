@@ -31,7 +31,7 @@ class CreateNoteViewModel: ObservableObject {
     }
     
     func fetchMovieLists() {
-        self.lists = [exMovieList, exMovieList, exMovieList]
+        
     }
     
     func hasList(_ list: MovieList) -> Bool {
@@ -47,18 +47,4 @@ class CreateNoteViewModel: ObservableObject {
     }
 }
 
-var exNote: Note {
-    var note = Note(context: PersistenceController.shared.viewContext)
-    note.movie = exMovie
-    note.rate = 9
-    note.text = "asdasdasda"
-    return note
-}
-var exMovieList: MovieList {
-    var list = MovieList(context: PersistenceController.shared.viewContext)
-    list.name = "first"
-    list.userMovies.insert(exNote)
-    list.userMovies.insert(exNote)
-    list.userMovies.insert(exNote)
-    return list
-}
+

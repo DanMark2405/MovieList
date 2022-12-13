@@ -9,6 +9,10 @@ import SwiftUI
 
 struct CreateUserView: View {
     @ObservedObject var viewModel = CreateUserViewModel()
+    
+    init(completion: @escaping (Bool) -> Void) {
+        viewModel.completion = completion
+    }
     var body: some View {
         VStack {
             Text("Create User")
@@ -29,17 +33,6 @@ struct CreateUserView: View {
             .padding(.vertical, 10)
             .background(Color.purple)
                 .cornerRadius(10)
-            
-            Button("Get") {
-                viewModel.getUsers()
-            }
-            .foregroundColor(.white)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color.purple)
-                .cornerRadius(10)
-            Text(viewModel.text)
-            
         }
         
     }
@@ -47,6 +40,6 @@ struct CreateUserView: View {
 
 struct CreateUserView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateUserView()
+        CreateUserView(completion: {_ in } )
     }
 }
