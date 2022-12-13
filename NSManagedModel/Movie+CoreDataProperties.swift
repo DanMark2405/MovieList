@@ -21,9 +21,9 @@ extension Movie {
     @NSManaged public var releaseDate: Date
     @NSManaged public var title: String
     @NSManaged public var voteAverage: Double
-    @NSManaged public var voteCount: Int
+    @NSManaged public var voteCount: Int64
     @NSManaged public var actors: Set<Actor>
-    @NSManaged public var genres: NSSet?
+    @NSManaged public var genres: Set<Genre>
     @NSManaged public var comments: Set<Comment>
 
 }

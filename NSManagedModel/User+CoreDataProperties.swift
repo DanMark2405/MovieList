@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  MovieList
 //
-//  Created by Daniil Markish on 6.12.22.
+//  Created by Daniil Markish on 13.12.22.
 //
 //
 
@@ -16,10 +16,10 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
+    @NSManaged public var email: String
     @NSManaged public var firstName: String
     @NSManaged public var lastName: String
-    @NSManaged public var email: String
-    @NSManaged public var comments: Set<Comment>
+    @NSManaged public var comments: NSSet?
     @NSManaged public var movieLists: Set<MovieList>
 
 }

@@ -7,8 +7,8 @@
 
 import Foundation
 
-var exNote: Note {
-    var note = Note(context: PersistenceController.shared.viewContext)
+var exNote: UserMovie {
+    var note = UserMovie(context: PersistenceController.shared.viewContext)
     note.movie = exMovie
     note.rate = 9
     note.text = "asdasdasda"

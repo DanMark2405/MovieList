@@ -11,9 +11,10 @@ import Combine
 class MovieDetailViewModel: ObservableObject {
     @Published var movie: Movie
     @Published var commentText = ""
-    @Published var rate = 0
+    @Published var rate = 1
     @Published var isDisabled = false
     
+    private var  database = PersistenceController.shared
     init(movie: Movie) {
         self.movie = movie
         $commentText
@@ -23,8 +24,22 @@ class MovieDetailViewModel: ObservableObject {
     }
     
     func addComment() {
+        guard let user = database.getUsers().first else {
+            return
+        }
         
+        let comment = Comment(context: database.viewContext)
+        comment.text = commentText
+        comment.rate = rate
+        comment.movie = movie
+        comment.user = user
+        database.saveContext()
+        updateView()
     }
+    
+    func updateView(){
+          self.objectWillChange.send()
+      }
     
     
 }

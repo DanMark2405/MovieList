@@ -10,7 +10,12 @@ import SwiftUI
 @main
 struct MovieListApp: App {
     let persistenceController = PersistenceController.shared
-
+    
+    init() {
+        persistenceController.preloading()
+    }
+    
+    
     var body: some Scene {
         WindowGroup {
          StartView()

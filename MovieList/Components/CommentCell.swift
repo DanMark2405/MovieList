@@ -21,7 +21,7 @@ struct CommentCell: View {
             }
             VStack(alignment: .leading) {
                 HStack {
-                    Text(String(format: "%.1f", comment.rate))
+                    Text("\(comment.rate)")
                         .font(.title3)
                     Image(systemName: "star.fill")
                         .font(.title3)

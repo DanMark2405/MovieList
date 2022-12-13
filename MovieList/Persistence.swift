@@ -47,6 +47,27 @@ class PersistenceController {
         return (try? viewContext.fetch(request)) ?? []
     }
     
+    func fetchGenres() -> [Genre] {
+        let request = Genre.fetchRequest()
+        return (try? viewContext.fetch(request)) ?? []
+    }
+    
+    func fetchActors(searchText: String = "") -> [Actor] {
+        let request = Actor.fetchRequest()
+        
+        if !searchText.isEmpty {
+            let namePredicate = NSPredicate(format: "%K BEGINSWITH[cd] %@", #keyPath(Actor.firstName), searchText)
+            let surnamePredicate = NSPredicate(format: "%K BEGINSWITH[cd] %@", #keyPath(Actor.lastName), searchText)
+            let actorPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [namePredicate, surnamePredicate])
+            request.predicate = actorPredicate
+        }
+        
+        request.sortDescriptors = [ NSSortDescriptor(keyPath: \Actor.firstName, ascending: true),
+                                    NSSortDescriptor(keyPath: \Actor.lastName, ascending: true)]
+        
+        return (try? viewContext.fetch(request)) ?? []
+    }
+    
      func saveContext () {
           if viewContext.hasChanges {
               do {
@@ -56,5 +77,29 @@ class PersistenceController {
               }
           }
       }
+    
+    func preloading() {
+        guard !UserDefaults.standard.bool(forKey: "hasStandardData")  else {
+            return
+        }
+        
+        if let bundlePath = Bundle.main.path(forResource: "Genres", ofType: "json"),
+           let jsonData = try? String(contentsOfFile: bundlePath).data(using: .utf8) {
+            let model = try? JSONDecoder().decode(PreloadingGenreData.self, from: jsonData)
+            if let model = model {
+                for item in model.genres {
+                    let genre = Genre(context: viewContext)
+                    genre.name = item.name
+                    genre.id = item.id
+                }
+            }
+            
+        }
+        
+        saveContext()
+        UserDefaults.standard.set(true, forKey: "hasStandardData")
+        
+        
+    }
 
 }

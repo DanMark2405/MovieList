@@ -16,7 +16,11 @@ class MovieListViewModel: ObservableObject {
     }
     
     func fetchMovies() {
-        //movies.append(contentsOf: persistance.fetchMovies())
+        movies = persistance.fetchMovies()
     }
+    
+    func updateView(){
+          self.objectWillChange.send()
+      }
     
 }

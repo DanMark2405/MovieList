@@ -11,7 +11,6 @@ struct MovieDetailView: View {
     @ObservedObject var viewModel: MovieDetailViewModel
     @State var isShow = false
     init(movie: Movie) {
-        let movie = exMovie
         self.viewModel = MovieDetailViewModel(movie: movie)
     }
     var body: some View {
@@ -40,9 +39,6 @@ struct MovieDetailView: View {
                     Text(String(format: "%.1f", viewModel.movie.voteAverage))
                         .font(.title.bold())
                         .foregroundColor(.purple)
-                    Text("(\(viewModel.movie.voteCount))")
-                        .font(.title)
-                        .foregroundColor(.gray)
                 }
                 .padding(.leading)
                 Text(viewModel.movie.releaseDate.year())
@@ -98,25 +94,43 @@ struct MovieDetailView: View {
                                     .stroke(.gray.opacity(0.5), lineWidth: 1))
                         }.padding(.horizontal)
                     }
-                    LazyVStack {
+                    LazyVStack(alignment: .leading ) {
                         ForEach(viewModel.movie.comments.array()) {comment in
                             CommentCell(comment: comment)
                             
                         }
-                    }
+                    }.padding(.horizontal)
         
                 }
-            }.ignoresSafeArea()
+            }
+            .onAppear {
+                viewModel.updateView()
+            }
+            .ignoresSafeArea()
+                .navigationTitle(viewModel.movie.title)
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {}) {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 60)
-                                    .foregroundColor(.pink.opacity(0.5))
-                                Image(systemName: "plus")
-                                    .font(.title.bold())
-                                    .foregroundColor(.white)
+                        HStack(spacing: 0) {
+                            Button(action: {}) {
+                                ZStack {
+                                    Circle()
+                                        .frame(width: 40)
+                                        .foregroundColor(.pink.opacity(0.5))
+                                    Image(systemName: "plus")
+                                        .font(.title3.bold())
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            NavigationLink(destination: CreateMovieView(movie: viewModel.movie)) {
+                                    ZStack {
+                                        Circle()
+                                            .frame(width: 40)
+                                            .foregroundColor(.blue.opacity(0.5))
+                                        Image(systemName: "pencil")
+                                            .font(.title3.bold())
+                                            .foregroundColor(.white)
+                                    }
                             }
                         }
                     }

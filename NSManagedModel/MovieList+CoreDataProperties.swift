@@ -18,7 +18,7 @@ extension MovieList {
 
     @NSManaged public var name: String
     @NSManaged public var imagePath: String?
-    @NSManaged public var userMovies: Set<Note>
+    @NSManaged public var userMovies: Set<UserMovie>
     @NSManaged public var user: User?
 
 }
@@ -27,10 +27,10 @@ extension MovieList {
 extension MovieList {
 
     @objc(addUserMoviesObject:)
-    @NSManaged public func addToUserMovies(_ value: Note)
+    @NSManaged public func addToUserMovies(_ value: UserMovie)
 
     @objc(removeUserMoviesObject:)
-    @NSManaged public func removeFromUserMovies(_ value: Note)
+    @NSManaged public func removeFromUserMovies(_ value: UserMovie)
 
     @objc(addUserMovies:)
     @NSManaged public func addToUserMovies(_ values: NSSet)

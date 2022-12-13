@@ -12,10 +12,6 @@ struct MovieListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Movies")
-                    .font(.title.bold())
-                    .foregroundColor(.purple)
-                
                 List(viewModel.movies) { movie in
                     NavigationLink(destination: MovieDetailView(movie: movie)) {
                         MovieCell(movie: movie)
@@ -25,8 +21,9 @@ struct MovieListView: View {
             }
             .onAppear {
                 viewModel.fetchMovies()
-            }
-        }.navigationTitle("Movies")
+                viewModel.updateView()
+            }.navigationTitle("Movies")
+        }
     }
 }
 

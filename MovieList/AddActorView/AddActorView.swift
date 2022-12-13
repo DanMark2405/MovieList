@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct AddActorView: View {
+    
     @ObservedObject var viewModel = AddActorViewModel()
     @State private var isShow = false
     var gridItems = [GridItem(.adaptive(minimum: 100), spacing: 10)]
     
+    @Environment(\.dismiss) var dismiss
+    
+    init(completion: @escaping (Actor) -> Void) {
+        viewModel.completion = completion
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Add Actor")
-                .font(.title.bold())
-                .foregroundColor(.purple)
-                .padding(.horizontal)
-            
+      
             SearchView(text: $viewModel.searchText) {
                 viewModel.search()
             }
@@ -37,6 +40,7 @@ struct AddActorView: View {
                     TextFieldView(text: $viewModel.imagePath, title: "Image path", keyboardType: .URL)
                     Button("Create") {
                         viewModel.addActor()
+                        self.dismiss()
                     }
                     .disabled(viewModel.isDisabled)
                     .foregroundColor(.white)
@@ -48,21 +52,34 @@ struct AddActorView: View {
               
                 
             }
-            
-            LazyVGrid(columns: gridItems) {
-                ForEach(viewModel.actors) { item in
-                    ActorCell(actor: item)
+            ScrollView {
+                LazyVGrid(columns: gridItems) {
+                    ForEach(viewModel.actors) { item in
+                        Button(action: {
+                            viewModel.completion?(item)
+                            self.dismiss()
+                        }) {
+                            ActorCell(actor: item)
+                        }
+                        
+                    }
                 }
             }
+            Spacer()
            
 
-        }
+        }.navigationTitle("Add Actor")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                viewModel.fetch()
+            }
+            
     }
 }
 
 struct AddActorView_Previews: PreviewProvider {
     static var previews: some View {
-        AddActorView()
+        AddActorView(completion: { _ in})
     }
 }
 
