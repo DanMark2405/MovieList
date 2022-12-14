@@ -1,0 +1,22 @@
+[
+    {
+        "firstName": "Johnny",
+        "lastName": "Depp",
+        "imagePath": "https://www.thefamouspeople.com/profiles/images/johnny-depp-6.jpg"
+    },
+    {
+        "firstName": "Leonardo",
+        "lastName": "DiCaprio",
+        "imagePath": "https://www.thefamouspeople.com/profiles/thumbs/leonardo-dicaprio-10.jpg"
+    },
+    {
+        "firstName": "Brad",
+        "lastName": "Pitt",
+        "imagePath": "https://www.thefamouspeople.com/profiles/thumbs/brad-pitt-4.jpg"
+    },
+    {
+        "firstName": "Samuel L",
+        "lastName": "Jackson",
+        "imagePath": "https://www.thefamouspeople.com/profiles/thumbs/samuel-l-jackson-2.jpg"
+    }
+    ]

@@ -107,9 +107,9 @@ class PersistenceController {
       }
     
     func preloading() {
-        guard !UserDefaults.standard.bool(forKey: "hasStandardData")  else {
-            return
-        }
+//        guard !UserDefaults.standard.bool(forKey: "hasStandardData")  else {
+//            return
+//        }
         
         if let bundlePath = Bundle.main.path(forResource: "Genres", ofType: "json"),
            let jsonData = try? String(contentsOfFile: bundlePath).data(using: .utf8) {
@@ -123,6 +123,43 @@ class PersistenceController {
             }
             
         }
+        
+        var actors = Set<Actor>()
+        
+        if let bundlePath = Bundle.main.path(forResource: "actors", ofType: "json"),
+           let jsonData = try? String(contentsOfFile: bundlePath).data(using: .utf8) {
+            let model = try? JSONDecoder().decode([PreloadingActor].self, from: jsonData)
+            if let model = model {
+                for item in model {
+                    let actor = Actor(context: viewContext)
+                    actor.firstName = item.firstName
+                    actor.lastName = item.lastName
+                    actor.imagePath = item.imagePath
+                    actors.insert(actor)
+                }
+            }
+            
+        }
+        
+        if let bundlePath = Bundle.main.path(forResource: "movies", ofType: "json"),
+           let jsonData = try? String(contentsOfFile: bundlePath).data(using: .utf8) {
+            let model = try? JSONDecoder().decode([PreloadingMovie].self, from: jsonData)
+            if let model = model {
+                for item in model {
+                    let movie = Movie(context: viewContext)
+                    movie.releaseDate = (try? Date(item.releaseDate, strategy: .dateTime)) ?? Date()
+                    movie.title = item.title
+                    movie.overview = item.overview
+                    movie.voteAverage = item.voteAverage
+                    movie.posterPath = item.posterPath
+                    movie.actors = actors
+                   
+                }
+            }
+            
+        }
+        
+
         
         saveContext()
         UserDefaults.standard.set(true, forKey: "hasStandardData")
