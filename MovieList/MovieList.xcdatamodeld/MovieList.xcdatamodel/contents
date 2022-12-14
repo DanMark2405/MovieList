@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Actor" representedClassName="Actor" syncable="YES">
         <attribute name="firstName" attributeType="String"/>
         <attribute name="imagePath" optional="YES" attributeType="String"/>
@@ -47,4 +47,13 @@
         <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="userMovies" inverseEntity="Movie"/>
         <relationship name="movieLists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovieList" inverseName="userMovies" inverseEntity="MovieList"/>
     </entity>
+    <elements>
+        <element name="Actor" positionX="-97.01654052734375" positionY="80.0572509765625" width="128" height="89"/>
+        <element name="Comment" positionX="204.4876098632812" positionY="82.77717590332031" width="128" height="89"/>
+        <element name="Genre" positionX="118.2601318359375" positionY="230.0502777099609" width="128" height="59"/>
+        <element name="Movie" positionX="-188.3458251953125" positionY="290.7431793212891" width="128" height="179"/>
+        <element name="MovieList" positionX="235.5598754882812" positionY="477.6535186767578" width="128" height="89"/>
+        <element name="User" positionX="364.9108276367188" positionY="365.1410369873047" width="128" height="104"/>
+        <element name="UserMovie" positionX="57.1077880859375" positionY="506.3896179199219" width="128" height="103"/>
+    </elements>
 </model>

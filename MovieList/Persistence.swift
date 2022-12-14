@@ -26,16 +26,6 @@ class PersistenceController {
       }()
     
     
-     func saveUser(name: String, surname: String, email: String) {
-        container.performBackgroundTask { context in
-            let object = User(context: context)
-            object.firstName = name
-            object.lastName = surname
-            object.email = email
-            try? context.save()
-        }
-    }
-    
      func getUsers() -> [User] {
         let request = User.fetchRequest()
         return (try? viewContext.fetch(request)) ?? []
@@ -107,9 +97,9 @@ class PersistenceController {
       }
     
     func preloading() {
-//        guard !UserDefaults.standard.bool(forKey: "hasStandardData")  else {
-//            return
-//        }
+        guard !UserDefaults.standard.bool(forKey: "hasStandardData")  else {
+            return
+        }
         
         if let bundlePath = Bundle.main.path(forResource: "Genres", ofType: "json"),
            let jsonData = try? String(contentsOfFile: bundlePath).data(using: .utf8) {
