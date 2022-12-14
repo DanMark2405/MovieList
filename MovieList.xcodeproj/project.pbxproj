@@ -22,6 +22,8 @@
 		7AAC4C2E2940C88F00545C38 /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAC4C2D2940C88F00545C38 /* CreateUserView.swift */; };
 		7AAC4C302940C89F00545C38 /* CreateUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAC4C2F2940C89F00545C38 /* CreateUserViewModel.swift */; };
 		7AAC4C332940C95E00545C38 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAC4C322940C95E00545C38 /* TextFieldView.swift */; };
+		7AAE46D129496D52003CDB13 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE46D029496D52003CDB13 /* FilterView.swift */; };
+		7AAE46D429496FAA003CDB13 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE46D329496FAA003CDB13 /* FilterViewModel.swift */; };
 		7AB3229C2948772500F6ADE6 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB3229B2948772500F6ADE6 /* CommentCell.swift */; };
 		7AB322A12948797700F6ADE6 /* Comment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB3229F2948797700F6ADE6 /* Comment+CoreDataClass.swift */; };
 		7AB322A22948797700F6ADE6 /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB322A02948797700F6ADE6 /* Comment+CoreDataProperties.swift */; };
@@ -74,6 +76,8 @@
 		7AAC4C2D2940C88F00545C38 /* CreateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
 		7AAC4C2F2940C89F00545C38 /* CreateUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewModel.swift; sourceTree = "<group>"; };
 		7AAC4C322940C95E00545C38 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		7AAE46D029496D52003CDB13 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		7AAE46D329496FAA003CDB13 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		7AB3229B2948772500F6ADE6 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		7AB3229F2948797700F6ADE6 /* Comment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7AB322A02948797700F6ADE6 /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -179,6 +183,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		7AAE46D229496F81003CDB13 /* FilterView */ = {
+			isa = PBXGroup;
+			children = (
+				7AAE46D029496D52003CDB13 /* FilterView.swift */,
+				7AAE46D329496FAA003CDB13 /* FilterViewModel.swift */,
+			);
+			path = FilterView;
+			sourceTree = "<group>";
+		};
 		7AB322A92948A32200F6ADE6 /* CreateNoteView */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +273,7 @@
 				7AA824362947A97500D6019D /* AddActorView */,
 				7AA8243129479ED100D6019D /* MovieDetail */,
 				7A1F05E22946593A00E3B37F /* MovieListView */,
+				7AAE46D229496F81003CDB13 /* FilterView */,
 				7AAC4C312940C93A00545C38 /* Components */,
 				7A1F05DF2946424F00E3B37F /* CreateMovieView */,
 				7AAC4C2C2940C87000545C38 /* CreateUserView */,
@@ -411,6 +425,8 @@
 				7AC39075293F80D000B10E85 /* Movie+CoreDataClass.swift in Sources */,
 				7AAC4C2E2940C88F00545C38 /* CreateUserView.swift in Sources */,
 				7AB322DA29493A0200F6ADE6 /* MovieList+CoreDataClass.swift in Sources */,
+				7AAE46D429496FAA003CDB13 /* FilterViewModel.swift in Sources */,
+				7AAE46D129496D52003CDB13 /* FilterView.swift in Sources */,
 				7AC3907A293F80D000B10E85 /* Genre+CoreDataProperties.swift in Sources */,
 				7AC39078293F80D000B10E85 /* Actor+CoreDataProperties.swift in Sources */,
 				7AC39076293F80D000B10E85 /* Movie+CoreDataProperties.swift in Sources */,

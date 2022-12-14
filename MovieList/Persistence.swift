@@ -42,8 +42,29 @@ class PersistenceController {
     }
     
     
-    func fetchMovies() -> [Movie] {
+    func fetchMovies(
+        searchText: String? = nil,
+        minRate: Int = 0,
+        maxRate: Int = 10
+    ) -> [Movie] {
         let request = Movie.fetchRequest()
+        
+        
+        let ratePredicate = NSPredicate(format: "%K <= %i AND %K >= %i",
+                                          #keyPath(Movie.voteAverage),
+                                          maxRate,
+                                          #keyPath(Movie.voteAverage),
+                                          minRate)
+        
+        var mainPredicate: NSCompoundPredicate?
+        
+        if let searchText = searchText, !searchText.isEmpty {
+            let searchPredicate = NSPredicate(format: "%K BEGINSWITH[cd] %@", #keyPath(Movie.title), searchText)
+            mainPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [ratePredicate, searchPredicate])
+        }
+        
+        request.predicate = mainPredicate ?? ratePredicate
+        request.sortDescriptors = [ NSSortDescriptor(keyPath: \Movie.title, ascending: true)]
         return (try? viewContext.fetch(request)) ?? []
     }
     
