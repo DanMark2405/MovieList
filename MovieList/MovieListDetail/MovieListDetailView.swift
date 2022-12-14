@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MovieListDetailView: View {
     @ObservedObject var viewModel: MovieListDetailViewModel
+    @Environment(\.dismiss) var dismiss
     
     init(movieList: MovieList) {
         self.viewModel = MovieListDetailViewModel(movieList: movieList)
@@ -21,10 +22,11 @@ struct MovieListDetailView: View {
             
             HStack {
                 TextField("name", text: $viewModel.name)
-                .textFieldStyle(.roundedBorder)
-                .font(.title3)
+                    .textFieldStyle(.roundedBorder)
+                    .font(.title3)
                 Button("Edit") {
-                    
+                    viewModel.editList()
+                    self.dismiss()
                 }
                 .disabled(viewModel.isDisabled)
                 .foregroundColor(.white)
@@ -34,25 +36,30 @@ struct MovieListDetailView: View {
                 .cornerRadius(10)
             }.padding(.horizontal)
             
-            LazyVStack {
+            LazyVStack(alignment: .leading) {
                 ForEach(viewModel.movieList.userMovies.array()) { note in
-                    VStack(alignment: .leading) {
-                        MovieCell(movie: note.movie)
-                        HStack {
-                            Image(systemName: "star.fill")
-                                .font(.title.bold())
-                                .foregroundColor(.yellow)
-                                .padding(.trailing)
-                            Text("\(note.rate)")
-                                .font(.title.bold())
-                                .foregroundColor(.purple)
-                        }
-                        Text(note.text)
-                            .foregroundColor(.gray)
-                            .lineLimit(3)
+                    NavigationLink(destination: CreateNoteView(note: note)) {
+                        VStack(alignment: .leading) {
+                            MovieCell(movie: note.movie)
+                            HStack {
+                                Image(systemName: "star.fill")
+                                    .font(.title.bold())
+                                    .foregroundColor(.yellow)
+                                    .padding(.trailing)
+                                Text("\(note.rate)")
+                                    .font(.title.bold())
+                                    .foregroundColor(.purple)
+                            }
+                            Text(note.text)
+                                .foregroundColor(.gray)
+                                .lineLimit(3)
+                            Divider()
+                        }.padding(.horizontal)
+                        
                     }
-                    
                 }
+            }.onAppear {
+                viewModel.updateView()
             }
             
         }

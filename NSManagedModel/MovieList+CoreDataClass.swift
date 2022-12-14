@@ -2,7 +2,7 @@
 //  MovieList+CoreDataClass.swift
 //  MovieList
 //
-//  Created by Daniil Markish on 6.12.22.
+//  Created by Daniil Markish on 14.12.22.
 //
 //
 

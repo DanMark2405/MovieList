@@ -49,6 +49,7 @@ class PersistenceController {
     
     func fetchGenres() -> [Genre] {
         let request = Genre.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Genre.name, ascending: true)]
         return (try? viewContext.fetch(request)) ?? []
     }
     
@@ -65,6 +66,12 @@ class PersistenceController {
         request.sortDescriptors = [ NSSortDescriptor(keyPath: \Actor.firstName, ascending: true),
                                     NSSortDescriptor(keyPath: \Actor.lastName, ascending: true)]
         
+        return (try? viewContext.fetch(request)) ?? []
+    }
+    
+    func fetchMovieLists() -> [MovieList] {
+        let request = MovieList.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \MovieList.name, ascending: true)]
         return (try? viewContext.fetch(request)) ?? []
     }
     

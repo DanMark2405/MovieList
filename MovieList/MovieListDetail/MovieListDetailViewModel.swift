@@ -20,4 +20,14 @@ class MovieListDetailViewModel: ObservableObject {
             .assign(to: &$isDisabled)
         
     }
+    
+    func editList() {
+        movieList.name = name
+        PersistenceController.shared.saveContext()
+    }
+    
+    func updateView(){
+          self.objectWillChange.send()
+      }
+    
 }

@@ -2,7 +2,7 @@
 //  MovieList+CoreDataProperties.swift
 //  MovieList
 //
-//  Created by Daniil Markish on 6.12.22.
+//  Created by Daniil Markish on 14.12.22.
 //
 //
 
@@ -16,10 +16,10 @@ extension MovieList {
         return NSFetchRequest<MovieList>(entityName: "MovieList")
     }
 
-    @NSManaged public var name: String
     @NSManaged public var imagePath: String?
+    @NSManaged public var name: String
+    @NSManaged public var user: User
     @NSManaged public var userMovies: Set<UserMovie>
-    @NSManaged public var user: User?
 
 }
 

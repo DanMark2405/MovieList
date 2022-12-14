@@ -43,15 +43,21 @@ struct MovieListsView: View {
                     }.padding(.horizontal)
                     
                     ForEach(viewModel.user.movieLists.array()) { list in
-                        Text(list.name)
-                            .font(.title3)
-                            .foregroundColor(.gray)
-                            .padding(.horizontal)
+                        NavigationLink(destination: MovieListDetailView(movieList: list)) {
+                            Text(list.name)
+                                .font(.title3)
+                                .foregroundColor(.gray)
+                                .padding(.horizontal)
+                            
+                        }
                         
                         Divider()
                     }
                 }
             }.navigationTitle("Movie lists")
+                .onAppear {
+                    viewModel.updateView()
+                }
         }
     }
 }

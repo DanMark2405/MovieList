@@ -26,12 +26,13 @@
         <relationship name="actors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Actor" inverseName="movies" inverseEntity="Actor"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="movie" inverseEntity="Comment"/>
         <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Genre"/>
+        <relationship name="userMovies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UserMovie" inverseName="movie" inverseEntity="UserMovie"/>
     </entity>
     <entity name="MovieList" representedClassName="MovieList" syncable="YES">
         <attribute name="imagePath" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="movieLists" inverseEntity="User"/>
-        <relationship name="userNotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserMovie" inverseName="movieLists" inverseEntity="UserMovie"/>
+        <relationship name="userMovies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserMovie" inverseName="movieLists" inverseEntity="UserMovie"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" attributeType="String"/>
@@ -43,7 +44,7 @@
     <entity name="UserMovie" representedClassName="UserMovie" syncable="YES">
         <attribute name="rate" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
-        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie"/>
-        <relationship name="movieLists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovieList" inverseName="userNotes" inverseEntity="MovieList"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="userMovies" inverseEntity="Movie"/>
+        <relationship name="movieLists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovieList" inverseName="userMovies" inverseEntity="MovieList"/>
     </entity>
 </model>

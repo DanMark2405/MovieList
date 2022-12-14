@@ -37,6 +37,10 @@ class MovieDetailViewModel: ObservableObject {
         updateView()
     }
     
+    func deleteMovie() {
+        database.viewContext.delete(movie)
+    }
+    
     func updateView(){
           self.objectWillChange.send()
       }

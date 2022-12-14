@@ -12,10 +12,15 @@ struct MovieListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(viewModel.movies) { movie in
-                    NavigationLink(destination: MovieDetailView(movie: movie)) {
-                        MovieCell(movie: movie)
-                    }.listRowSeparator(.hidden)
+                List() {
+                    ForEach(viewModel.movies) { movie in
+                        NavigationLink(destination: MovieDetailView(movie: movie)) {
+                            MovieCell(movie: movie)
+                            
+                        }
+                        .listRowSeparator(.hidden)
+                        
+                    }.onDelete(perform: viewModel.deleteMovie(at:))
                 }
                 .listStyle(.inset)
             }

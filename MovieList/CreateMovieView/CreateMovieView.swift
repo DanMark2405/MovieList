@@ -93,6 +93,17 @@ struct CreateMovieView: View {
                 LazyHGrid(rows: actorGridItems) {
                     ForEach(viewModel.actors.array()) { item in
                  ActorCell(actor: item)
+                            .overlay(alignment: .topTrailing) {
+                                Button(action: { viewModel.deleteActor(actor: item)}) {
+                                    ZStack {
+                                        Circle()
+                                            .fill(Color.gray)
+                                            .frame(width: 20)
+                                        Image(systemName: "xmark.circle")
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                            }
                     }
                     
                 }

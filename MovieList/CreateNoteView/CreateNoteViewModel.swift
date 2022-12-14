@@ -15,7 +15,12 @@ class CreateNoteViewModel: ObservableObject {
     @Published var selectedLists = Set<MovieList>()
     
     var movie: Movie
+    var note: UserMovie?
     var lists = [MovieList]()
+    var database = PersistenceController.shared
+    
+    var navTitle = "Create Note"
+    var buttonTitle = "Create"
     
     init(movie: Movie) {
         self.movie = movie
@@ -25,13 +30,38 @@ class CreateNoteViewModel: ObservableObject {
             .assign(to: &$isDisabled)
     }
     
-    
-    func saveNote() {
+    convenience init(userMovie: UserMovie) {
+        self.init(movie: userMovie.movie)
+        self.note = userMovie
+        navTitle = "Edit Note"
+        buttonTitle = "Edit"
+        
+        self.rate = userMovie.rate
+        self.text = userMovie.text
+        self.selectedLists = userMovie.movieLists
         
     }
     
+    
+    func saveNote() {
+        var userMovie: UserMovie
+        if let note = note {
+            userMovie = note
+        } else {
+             userMovie = UserMovie(context: database.viewContext)
+        }
+        userMovie.rate = rate
+        userMovie.text = text
+        userMovie.movie = movie
+        userMovie.movieLists = selectedLists
+        if let list = lists.first(where: { $0.name == "My Notes"}) {
+            userMovie.movieLists.insert(list)
+        }
+        database.saveContext()
+    }
+    
     func fetchMovieLists() {
-        
+        self.lists = database.fetchMovieLists()
     }
     
     func hasList(_ list: MovieList) -> Bool {

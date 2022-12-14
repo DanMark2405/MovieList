@@ -10,6 +10,8 @@ import SwiftUI
 struct MovieDetailView: View {
     @ObservedObject var viewModel: MovieDetailViewModel
     @State var isShow = false
+    var actorGridItems = [GridItem(.adaptive(minimum: 150), spacing: 10)]
+    
     init(movie: Movie) {
         self.viewModel = MovieDetailViewModel(movie: movie)
     }
@@ -51,11 +53,15 @@ struct MovieDetailView: View {
                     .font(.subheadline)
                     .foregroundColor(.gray)
                 ScrollView(.horizontal) {
-                    ForEach(viewModel.movie.actors.array()) { item in
-                        ActorCell(actor: item)
+                    LazyHGrid(rows: actorGridItems) {
+                        ForEach(viewModel.movie.actors.array()) { item in
+                            ActorCell(actor: item)
+                        }
+                        
                     }
-                }.frame(height: 250)
                     .padding(.horizontal)
+                    
+                }
                 
                 VStack {
                     Button("Add comment + ") {
@@ -112,7 +118,7 @@ struct MovieDetailView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack(spacing: 0) {
-                            Button(action: {}) {
+                            NavigationLink(destination: CreateNoteView(movie: viewModel.movie)) {
                                 ZStack {
                                     Circle()
                                         .frame(width: 40)
@@ -132,6 +138,7 @@ struct MovieDetailView: View {
                                             .foregroundColor(.white)
                                     }
                             }
+                            
                         }
                     }
                 }

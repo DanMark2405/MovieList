@@ -75,8 +75,8 @@ class CreateMoviewViewModel: ObservableObject {
         movie.posterPath = posterPath
         movie.releaseDate = date
         movie.voteAverage = Double(voteAverage) ?? 0
-        selectedGenres.forEach{ movie.genres.insert($0) }
-        actors.forEach{ movie.actors.insert($0) }
+        movie.genres = selectedGenres
+        movie.actors = self.actors
         persistance.saveContext()
     }
     
@@ -98,6 +98,10 @@ class CreateMoviewViewModel: ObservableObject {
     
     func addActor(_ actor: Actor) {
         self.actors.insert(actor)
+    }
+    
+    func deleteActor(actor: Actor) {
+        self.actors.remove(actor)
     }
     
     

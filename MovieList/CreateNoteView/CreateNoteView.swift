@@ -9,20 +9,21 @@ import SwiftUI
 
 struct CreateNoteView: View {
     @ObservedObject var viewModel: CreateNoteViewModel
+    @Environment(\.dismiss) var dismiss
     
     init(movie: Movie) {
         self.viewModel = CreateNoteViewModel(movie: movie)
     }
     
+    init(note: UserMovie) {
+        self.viewModel = CreateNoteViewModel(userMovie: note)
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Text("Create Note")
-                    .font(.title.bold())
-                    .foregroundColor(.purple)
-                
-                MovieCell(movie: viewModel.movie)
-                
+    
+                    MovieCell(movie: viewModel.movie)
                 VStack {
                     HStack {
                         Stepper(value: $viewModel.rate, in: 1...10) {
@@ -52,7 +53,7 @@ struct CreateNoteView: View {
                         .font(.title.bold())
                         .foregroundColor(.purple)
                     
-                    LazyVStack {
+                    LazyVStack() {
                         ForEach(viewModel.lists) { list in
                             VStack(alignment: .leading, spacing: 0) {
                                     Button(action: {
@@ -75,8 +76,9 @@ struct CreateNoteView: View {
                     }
                     
                     
-                    Button("Save") {
+                    Button(viewModel.buttonTitle) {
                         viewModel.saveNote()
+                        self.dismiss()
                     }
                     .disabled(viewModel.isDisabled)
                     .foregroundColor(.white)
@@ -86,6 +88,7 @@ struct CreateNoteView: View {
                     .cornerRadius(10)
                 }.padding(.horizontal)
             }
+            .navigationTitle(viewModel.navTitle)
         }
         
     }
